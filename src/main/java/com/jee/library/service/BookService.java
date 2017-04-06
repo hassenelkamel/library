@@ -24,13 +24,18 @@ public class BookService {
     }
 
     @WebMethod
-    public void addBook(Book book) {
-        bookDAO.add(book);
+    public Book addBook(Book book) {
+        return bookDAO.add(book);
     }
 
     @WebMethod
-    public void removeBook(long id) {
-        bookDAO.delete(id);
+    public Book updateBook(Book book) {
+        return bookDAO.update(book);
+    }
+
+    @WebMethod
+    public Book removeBook(long id) {
+        return bookDAO.delete(id);
     }
 
     @WebMethod

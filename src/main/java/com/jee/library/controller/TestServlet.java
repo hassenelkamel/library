@@ -3,7 +3,7 @@ package com.jee.library.controller;
 import com.jee.library.dao.BookDAO;
 import com.jee.library.entity.Autor;
 import com.jee.library.entity.Book;
-import com.jee.library.entity.Genre;
+import com.jee.library.entity.BookGenre;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -31,7 +31,7 @@ public class TestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Book book = new Book();
         book.setName("Harry Potter and some stone");
-        book.setGenre(Genre.FANTACY);
+        book.setBookGenre(BookGenre.FANTACY);
         book.setPublishDate(new Date(1111111111L));
         book.setAuthors(new ArrayList<>(Arrays.asList(new Autor("Joan", "Rolling"))));
         bookDAO.add(book);

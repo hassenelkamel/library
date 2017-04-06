@@ -3,7 +3,7 @@ package com.jee.library.entity;
 /**
  * Created by Viktoriia_Moiseienko on 4/5/2017.
  */
-public enum Genre {
+public enum BookGenre {
     FICTION,
     FANTACY,
     SCIENCE,

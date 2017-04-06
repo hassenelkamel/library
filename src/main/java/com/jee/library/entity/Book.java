@@ -1,6 +1,10 @@
 package com.jee.library.entity;
 
+import com.jee.library.util.JaxbDateSerializer;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +23,7 @@ public class Book implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE)
    @Column(name = "id")
+   @XmlElement(required = true)
     private Long id;
 
     @Column(name = "name")
@@ -29,8 +34,12 @@ public class Book implements Serializable {
     private Date publishDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "genre")
-    private Genre genre;
+    @Column(name = "bookGenre")
+    private BookGenre bookGenre;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private BookStatus bookStatus;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_collection_id")
@@ -64,6 +73,7 @@ public class Book implements Serializable {
         this.name = name;
     }
 
+    @XmlJavaTypeAdapter(JaxbDateSerializer.class)
     public Date getPublishDate() {
         return publishDate;
     }
@@ -72,12 +82,12 @@ public class Book implements Serializable {
         this.publishDate = publishDate;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public BookGenre getBookGenre() {
+        return bookGenre;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setBookGenre(BookGenre bookGenre) {
+        this.bookGenre = bookGenre;
     }
 
     public List<Autor> getAuthors() {
@@ -94,7 +104,7 @@ public class Book implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", publishDate=" + publishDate +
-                ", genre=" + genre +
+                ", bookGenre=" + bookGenre +
                 ", bookCollection=" + bookCollection +
                 ", authors=" + authors +
                 '}';
