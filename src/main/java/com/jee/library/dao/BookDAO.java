@@ -26,4 +26,9 @@ public class BookDAO extends BaseDAO<Book> {
     protected EntityManager getEntityManager() {
         return em;
     }
+
+    public List<Book> findByName(String name) {
+        TypedQuery<Book> query = em.createNamedQuery("Book.findByName", Book.class);
+        return query.getResultList();
+    }
 }
