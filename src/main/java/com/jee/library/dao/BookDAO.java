@@ -1,6 +1,7 @@
 package com.jee.library.dao;
 
 import com.jee.library.entity.Book;
+import org.hibernate.Hibernate;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -29,6 +30,17 @@ public class BookDAO extends BaseDAO<Book> {
 
     public List<Book> findByName(String name) {
         TypedQuery<Book> query = em.createNamedQuery("Book.findByName", Book.class);
+        query.setParameter("name", name);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Book> findAll() {
+        List<Book> books = super.findAll();
+        for (Book book: books) {
+              Hibernate.initialize(book.getAuthors());
+//            book.getAuthors().size(); //TODO transaction, it's a hack for lazy loaded list
+        }
+        return books;
     }
 }

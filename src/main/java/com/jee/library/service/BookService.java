@@ -33,4 +33,11 @@ public class BookService {
         bookDAO.delete(id);
     }
 
+    @WebMethod
+    public List<Book> getAllBooks() {
+        return bookDAO.findAll();
+    }
+
+
+
 }

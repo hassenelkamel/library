@@ -1,6 +1,7 @@
 package com.jee.library.entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,9 +22,6 @@ public class Autor implements Serializable {
 
     @Column(name= "last_name")
     private String lastName;
-
-    @ManyToMany(mappedBy="authors", cascade = CascadeType.ALL)
-    private List<Book> books;
 
     public Autor() {
     }
@@ -57,11 +55,12 @@ public class Autor implements Serializable {
         this.lastName = lastName;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
