@@ -14,16 +14,14 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name="Book.findByName",
-                query="SELECT c FROM Book c WHERE c.name = :name"), //TODO like % %
+        @NamedQuery(name="Book.findByName", query="SELECT c FROM Book c WHERE c.name = :name"), //TODO like % %
 })
 @Table(name = "book")
 public class Book implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-   @Column(name = "id")
-   @XmlElement(required = true)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
@@ -34,7 +32,7 @@ public class Book implements Serializable {
     private Date publishDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "bookGenre")
+    @Column(name = "genre")
     private BookGenre bookGenre;
 
     @Enumerated(EnumType.STRING)
@@ -98,6 +96,22 @@ public class Book implements Serializable {
         this.authors = authors;
     }
 
+    public BookStatus getBookStatus() {
+        return bookStatus;
+    }
+
+    public void setBookStatus(BookStatus bookStatus) {
+        this.bookStatus = bookStatus;
+    }
+
+    public BookCollection getBookCollection() {
+        return bookCollection;
+    }
+
+    public void setBookCollection(BookCollection bookCollection) {
+        this.bookCollection = bookCollection;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -105,6 +119,7 @@ public class Book implements Serializable {
                 ", name='" + name + '\'' +
                 ", publishDate=" + publishDate +
                 ", bookGenre=" + bookGenre +
+                ", bookStatus=" + bookStatus +
                 ", bookCollection=" + bookCollection +
                 ", authors=" + authors +
                 '}';

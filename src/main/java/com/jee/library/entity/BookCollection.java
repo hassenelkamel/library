@@ -18,7 +18,7 @@ public class BookCollection {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookCollection")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookCollection", fetch = FetchType.EAGER) //since this collection always small
     private List<Book> books;
 
     public BookCollection() {
@@ -46,5 +46,13 @@ public class BookCollection {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    @Override
+    public String toString() {
+        return "BookCollection{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

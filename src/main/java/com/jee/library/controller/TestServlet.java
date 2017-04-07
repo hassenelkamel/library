@@ -4,6 +4,7 @@ import com.jee.library.dao.BookDAO;
 import com.jee.library.entity.Autor;
 import com.jee.library.entity.Book;
 import com.jee.library.entity.BookGenre;
+import com.jee.library.srvice.BookService;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -25,17 +26,17 @@ import java.util.List;
 public class TestServlet extends HttpServlet {
 
     @EJB
-    private BookDAO bookDAO;
+    private BookService bookService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Book book = new Book();
-        book.setName("Harry Potter and some stone");
-        book.setBookGenre(BookGenre.FANTACY);
-        book.setPublishDate(new Date(1111111111L));
-        book.setAuthors(new ArrayList<>(Arrays.asList(new Autor("Joan", "Rolling"))));
-        bookDAO.add(book);
-        List<Book> bookList = bookDAO.findAll();
+//        Book book = new Book();
+//        book.setName("Harry Potter and some stone");
+//        book.setBookGenre(BookGenre.FANTACY);
+//        book.setPublishDate(new Date(1111111111L));
+//        book.setAuthors(new ArrayList<>(Arrays.asList(new Autor("Joan", "Rolling"))));
+//        bookDAO.add(book);
+        List<Book> bookList = bookService.getAllBooks();
 
 
         resp.setContentType("text/html");

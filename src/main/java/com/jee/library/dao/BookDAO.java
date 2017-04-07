@@ -3,7 +3,7 @@ package com.jee.library.dao;
 import com.jee.library.entity.Book;
 import org.hibernate.Hibernate;
 
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -39,7 +39,6 @@ public class BookDAO extends BaseDAO<Book> {
         List<Book> books = super.findAll();
         for (Book book: books) {
               Hibernate.initialize(book.getAuthors());
-//            book.getAuthors().size(); //TODO transaction, it's a hack for lazy loaded list
         }
         return books;
     }
