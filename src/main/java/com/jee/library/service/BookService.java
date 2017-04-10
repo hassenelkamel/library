@@ -1,4 +1,4 @@
-package com.jee.library.srvice;
+package com.jee.library.service;
 
 import com.jee.library.dao.BookCollectionDAO;
 import com.jee.library.dao.BookDAO;
@@ -6,7 +6,6 @@ import com.jee.library.entity.Book;
 import com.jee.library.entity.BookCollection;
 import com.jee.library.entity.BookStatus;
 
-import javax.annotation.Resource;
 import javax.ejb.*;
 import java.util.List;
 
@@ -22,8 +21,12 @@ public class BookService {
     @EJB
     private BookCollectionDAO bookCollectionDAO;
 
-    @Resource
-    private EJBContext context;
+    @EJB
+    private BookService bookService;
+
+    public Book getBookById(Long id) {
+        return bookDAO.find(id);
+    }
 
     public List<Book> getBookByName(String name) {
         return bookDAO.findByName(name);
@@ -32,7 +35,7 @@ public class BookService {
     public Book addBook(Book book) {
         return bookDAO.add(book);
     }
-
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Book updateBook(Book book) {
         return bookDAO.update(book);
     }
@@ -45,8 +48,7 @@ public class BookService {
         return bookDAO.findAll();
     }
 
-
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void releaseBook(long id) {
         Book book = bookDAO.find(id);
         if (book == null) return;
@@ -59,10 +61,12 @@ public class BookService {
             for (Book book1 : collectionBooks) {
                 if (book1.getBookStatus() != BookStatus.RELEASED) {
                     book1.setBookStatus(BookStatus.RELEASED);
-                    bookDAO.add(book);
-                    throw new RuntimeException();
+                    bookService.updateBook(book);
+//                    throw new TestException();
                 }
             }
+
+
 //        } catch (TestException e) {
 //            context.setRollbackOnly();
 //            System.out.println("TestException");

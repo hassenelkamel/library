@@ -1,10 +1,7 @@
 package com.jee.library.controller;
 
-import com.jee.library.dao.BookDAO;
-import com.jee.library.entity.Autor;
 import com.jee.library.entity.Book;
-import com.jee.library.entity.BookGenre;
-import com.jee.library.srvice.BookService;
+import com.jee.library.service.BookService;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**

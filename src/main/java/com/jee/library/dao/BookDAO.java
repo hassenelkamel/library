@@ -28,6 +28,13 @@ public class BookDAO extends BaseDAO<Book> {
         return em;
     }
 
+
+    @Override
+//    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public Book update(Book entity) {
+        return super.update(entity);
+    }
+
     public List<Book> findByName(String name) {
         TypedQuery<Book> query = em.createNamedQuery("Book.findByName", Book.class);
         query.setParameter("name", name);

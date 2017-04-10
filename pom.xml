@@ -10,6 +10,13 @@
     <name>Library</name>
     <packaging>war</packaging>
 
+    <repositories>
+        <repository>
+            <id>JBoss repository</id>
+            <url>https://maven.repository.redhat.com/ga/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
@@ -40,6 +47,13 @@
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>2.3.6.Final-redhat-1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

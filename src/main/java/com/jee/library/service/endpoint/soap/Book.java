@@ -1,6 +1,6 @@
-package com.jee.library.endpoint;
+package com.jee.library.service.endpoint.soap;
 
-import com.jee.library.srvice.BookService;
+import com.jee.library.service.BookService;
 
 import javax.ejb.EJB;
 import javax.jws.WebMethod;
