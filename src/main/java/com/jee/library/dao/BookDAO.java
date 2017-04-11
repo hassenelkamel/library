@@ -29,31 +29,18 @@ public class BookDAO extends BaseDAO<Book> {
     }
 
 
-    @Override
-//    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public Book update(Book entity) {
-        return super.update(entity);
-    }
-
     public List<Book> findByName(String name) {
         TypedQuery<Book> query = em.createNamedQuery("Book.findByName", Book.class);
         query.setParameter("name", name);
         return query.getResultList();
     }
 
-    @Override
-    public Book find(Long id) {
-        Book book = super.find(id);
-        book.getAuthors().size();
-        return book;
-    }
-
-    @Override
-    public List<Book> findAll() {
-        List<Book> books = super.findAll();
-        for (Book book: books) {
-              Hibernate.initialize(book.getAuthors());
-        }
-        return books;
-    }
+    //    @Override  //if authors uses lazy fetch
+//    public List<Book> findAll() {
+//        List<Book> books = super.findAll();
+//        for (Book book: books) {
+//              Hibernate.initialize(book.getAuthors());
+//        }
+//        return books;
+//    }
 }

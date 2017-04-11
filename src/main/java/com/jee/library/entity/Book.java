@@ -43,7 +43,7 @@ public class Book implements Serializable {
     @JoinColumn(name = "book_collection_id")
     private BookCollection bookCollection;
 
-    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     @JoinTable(name="book_author",
             joinColumns=
             @JoinColumn(name="book_id", referencedColumnName="id"),

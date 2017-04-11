@@ -5,8 +5,11 @@ import com.jee.library.dao.BookDAO;
 import com.jee.library.entity.Book;
 import com.jee.library.entity.BookCollection;
 import com.jee.library.entity.BookStatus;
+import org.hibernate.Hibernate;
 
 import javax.ejb.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -35,7 +38,7 @@ public class BookService {
     public Book addBook(Book book) {
         return bookDAO.add(book);
     }
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+
     public Book updateBook(Book book) {
         return bookDAO.update(book);
     }
@@ -48,6 +51,7 @@ public class BookService {
         return bookDAO.findAll();
     }
 
+
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void releaseBook(long id) {
         Book book = bookDAO.find(id);
@@ -56,22 +60,15 @@ public class BookService {
         BookCollection bookCollection = book.getBookCollection();
         if (bookCollection == null) return;
 
-        List<Book> collectionBooks = bookCollection.getBooks();
-//        try {
-            for (Book book1 : collectionBooks) {
-                if (book1.getBookStatus() != BookStatus.RELEASED) {
-                    book1.setBookStatus(BookStatus.RELEASED);
-                    bookService.updateBook(book);
-//                    throw new TestException();
-                }
+        List<Book> books = bookCollection.getBooks();
+
+        for (Book book1 : books) {
+            if (book1.getBookStatus() != BookStatus.RELEASED) {
+                book1.setBookStatus(BookStatus.RELEASED);  // this code updates in DB too
+//                bookDAO.update(book1);  // causes ConcurrentModificationException
             }
-
-
-//        } catch (TestException e) {
-//            context.setRollbackOnly();
-//            System.out.println("TestException");
-//        }
-
+        }
+//        bookCollectionDAO.update(bookCollection); // unnecessary
     }
 
 }

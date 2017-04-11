@@ -3,6 +3,9 @@ package com.jee.library.entity;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 /**
@@ -10,6 +13,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "book_collection")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class BookCollection {
 
     @Id
@@ -21,6 +25,7 @@ public class BookCollection {
     private String name;
 
     @JsonIgnore
+    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookCollection", fetch = FetchType.LAZY)
     private List<Book> books;
 

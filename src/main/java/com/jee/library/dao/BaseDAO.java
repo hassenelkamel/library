@@ -2,6 +2,7 @@ package com.jee.library.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -23,8 +24,7 @@ public abstract class BaseDAO<T> {
     }
 
     public T update(T entity) {
-        getEntityManager().merge(entity);
-        return entity;
+        return getEntityManager().merge(entity);
     }
 
     public T delete(Long id) {

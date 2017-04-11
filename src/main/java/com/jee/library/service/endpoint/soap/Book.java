@@ -42,4 +42,9 @@ public class Book {
         return bookService.getAllBooks();
     }
 
+    @WebMethod
+    public void release(long id) {
+        bookService.releaseBook(id);
+    }
+
 }
