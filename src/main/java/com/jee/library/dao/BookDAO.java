@@ -42,6 +42,13 @@ public class BookDAO extends BaseDAO<Book> {
     }
 
     @Override
+    public Book find(Long id) {
+        Book book = super.find(id);
+        book.getAuthors().size();
+        return book;
+    }
+
+    @Override
     public List<Book> findAll() {
         List<Book> books = super.findAll();
         for (Book book: books) {

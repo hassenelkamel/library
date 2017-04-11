@@ -1,5 +1,7 @@
 package com.jee.library.entity;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,7 +20,8 @@ public class BookCollection {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookCollection", fetch = FetchType.EAGER) //since this collection always small
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookCollection", fetch = FetchType.LAZY)
     private List<Book> books;
 
     public BookCollection() {

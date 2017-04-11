@@ -10,7 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -23,24 +22,17 @@ public class BookController {
     @EJB
     private BookService bookService;
 
-//    @GET
-//    @Path("/{param}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String printMessage(@PathParam("param") String msg) {
-//        return msg;
-//    }
-
     @GET
-    @Path("/all")
-    @Produces("application/json")
-    public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Book getBook(@PathParam("id") Long id) {
+        return bookService.getBookById(id);
     }
 
     @GET
-    @Produces("application/xml")
-    @Path("/{id}")
-    public Book getBook(@PathParam("id") Long id) {
-        return bookService.getBookById(id);
+    @Path("/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
     }
 }
