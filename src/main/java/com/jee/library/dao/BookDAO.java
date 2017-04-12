@@ -35,7 +35,7 @@ public class BookDAO extends BaseDAO<Book> {
         return query.getResultList();
     }
 
-    //    @Override  //if authors uses lazy fetch
+//    @Override  //if authors uses lazy fetch
 //    public List<Book> findAll() {
 //        List<Book> books = super.findAll();
 //        for (Book book: books) {

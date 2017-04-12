@@ -5,11 +5,11 @@ import com.jee.library.dao.BookDAO;
 import com.jee.library.entity.Book;
 import com.jee.library.entity.BookCollection;
 import com.jee.library.entity.BookStatus;
-import org.hibernate.Hibernate;
 
-import javax.ejb.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import java.util.List;
 
 /**
@@ -65,10 +65,8 @@ public class BookService {
         for (Book book1 : books) {
             if (book1.getBookStatus() != BookStatus.RELEASED) {
                 book1.setBookStatus(BookStatus.RELEASED);  // this code updates in DB too
-//                bookDAO.update(book1);  // causes ConcurrentModificationException
             }
         }
-//        bookCollectionDAO.update(bookCollection); // unnecessary
     }
 
 }
