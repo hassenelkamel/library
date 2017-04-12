@@ -4,6 +4,7 @@ import com.jee.library.util.JaxbDateSerializer;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.util.Date;
@@ -39,11 +40,11 @@ public class Book implements Serializable {
     @Column(name = "status")
     private BookStatus bookStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "book_collection_id")
     private BookCollection bookCollection;
 
-    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name="book_author",
             joinColumns=
             @JoinColumn(name="book_id", referencedColumnName="id"),
