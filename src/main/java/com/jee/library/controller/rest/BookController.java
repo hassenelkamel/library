@@ -23,7 +23,7 @@ public class BookController {
     private BookService bookService;
 
     @GET
-    @Path("/{id}")
+    @Path("/{id : \\d+}")
     @Produces(MediaType.APPLICATION_JSON)
     public Book getBook(@PathParam("id") Long id) {
         return bookService.getBookById(id);
