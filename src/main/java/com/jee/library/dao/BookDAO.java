@@ -1,7 +1,6 @@
 package com.jee.library.dao;
 
-import com.jee.library.entity.Book;
-import org.hibernate.Hibernate;
+import com.jee.library.model.entity.Book;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;

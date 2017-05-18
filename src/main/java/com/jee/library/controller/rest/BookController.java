@@ -1,6 +1,6 @@
 package com.jee.library.controller.rest;
 
-import com.jee.library.entity.Book;
+import com.jee.library.model.entity.Book;
 import com.jee.library.service.BookService;
 
 import javax.ejb.EJB;

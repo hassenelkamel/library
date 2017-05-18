@@ -1,4 +1,4 @@
-package com.jee.library.entity;
+package com.jee.library.model.entity;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;

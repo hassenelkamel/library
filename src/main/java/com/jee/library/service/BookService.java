@@ -2,9 +2,9 @@ package com.jee.library.service;
 
 import com.jee.library.dao.BookCollectionDAO;
 import com.jee.library.dao.BookDAO;
-import com.jee.library.entity.Book;
-import com.jee.library.entity.BookCollection;
-import com.jee.library.entity.BookStatus;
+import com.jee.library.model.entity.Book;
+import com.jee.library.model.entity.BookCollection;
+import com.jee.library.model.BookStatus;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

@@ -18,27 +18,27 @@ public class Book {
     private BookService bookService;
 
     @WebMethod
-    public List<com.jee.library.entity.Book> getByName(String name) {
+    public List<com.jee.library.model.entity.Book> getByName(String name) {
         return bookService.getBookByName(name);
     }
 
     @WebMethod
-    public com.jee.library.entity.Book add(com.jee.library.entity.Book book) {
+    public com.jee.library.model.entity.Book add(com.jee.library.model.entity.Book book) {
         return bookService.addBook(book);
     }
 
     @WebMethod
-    public com.jee.library.entity.Book update(com.jee.library.entity.Book book) {
+    public com.jee.library.model.entity.Book update(com.jee.library.model.entity.Book book) {
         return bookService.updateBook(book);
     }
 
     @WebMethod
-    public com.jee.library.entity.Book remove(long id) {
+    public com.jee.library.model.entity.Book remove(long id) {
         return bookService.removeBook(id);
     }
 
     @WebMethod
-    public List<com.jee.library.entity.Book> getAll() {
+    public List<com.jee.library.model.entity.Book> getAll() {
         return bookService.getAllBooks();
     }
 

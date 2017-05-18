@@ -1,10 +1,10 @@
-package com.jee.library.entity;
+package com.jee.library.model.entity;
 
+import com.jee.library.model.BookGenre;
+import com.jee.library.model.BookStatus;
 import com.jee.library.util.JaxbDateSerializer;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.util.Date;
@@ -44,7 +44,7 @@ public class Book implements Serializable {
     @JoinColumn(name = "book_collection_id")
     private BookCollection bookCollection;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name="book_author",
             joinColumns=
             @JoinColumn(name="book_id", referencedColumnName="id"),

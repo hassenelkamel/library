@@ -1,6 +1,6 @@
 package com.jee.library.dao;
 
-import com.jee.library.entity.BookCollection;
+import com.jee.library.model.entity.BookCollection;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

@@ -1,4 +1,4 @@
-package com.jee.library.entity;
+package com.jee.library.model;
 
 /**
  * Created by Viktoriia_Moiseienko on 4/6/2017.
